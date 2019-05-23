@@ -9,6 +9,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { DatePipe } from '@angular/common';
 import { HomeComponent } from './home/home.component';
 import { TicketListComponent } from './ticket-list/ticket-list.component';
+import { TicketFormComponent } from './ticket-form/ticket-form.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -22,6 +23,7 @@ const routes: Routes = [
     AppComponent,
     HomeComponent,
     TicketListComponent,
+    TicketFormComponent,
   ],
   imports: [
     BrowserModule,

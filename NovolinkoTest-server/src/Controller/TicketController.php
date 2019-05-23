@@ -31,14 +31,21 @@ class TicketController extends ApiController
             return $this->respondValidationError('Please provide a valid request!');
         }
 
-        // validate the title
-        if (! $request->get('title')) {
-            return $this->respondValidationError('Please provide a title!');
+        // validate the libelle
+        if (! $request->get('libelle')) {
+            return $this->respondValidationError('Please provide a libelle !');
         }
 
         // persist the new ticket
         $ticket = new Ticket;
-        $ticket->setTitle($request->get('title'));
+        $ticket->setLibelle($request->get('libelle'));
+        $ticket->setDescription($request->get('description'));
+        $ticket->setCategory($request->get('category'));
+        $ticket->setImage($request->get('image'));
+        $ticket->setEmail($request->get('email'));
+        $ticket->setCreationDate($request->get('creationDate'));
+        $ticket->setPriority($request->get('priority'));
+        $ticket->setStatus($request->get('status'));
         $em->persist($ticket);
         $em->flush();
 

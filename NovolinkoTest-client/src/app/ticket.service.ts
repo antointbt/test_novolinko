@@ -26,4 +26,10 @@ export class TicketService {
         )
         .map(res => res.json());
     }
+
+    addTicket(ticket): Observable<Ticket> {
+      return this.http.post(API_URL + '/tickets', ticket, 
+          new RequestOptions({ headers: this.headers })
+      ).map(res => res.json());
+    }
 }

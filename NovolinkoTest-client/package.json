@@ -21,7 +21,6 @@
     "@angular/platform-browser-dynamic": "^6.1.0",
     "@angular/router": "^6.1.0",
     "@fortawesome/fontawesome-free": "^5.8.2",
-    "@okta/okta-angular": "^1.2.1",
     "@types/chart.js": "^2.7.52",
     "angular-bootstrap-md": "^7.5.2",
     "bootstrap": "^4.3.1",

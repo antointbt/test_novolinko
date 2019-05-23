@@ -1,7 +1,36 @@
-<span class="help is-danger">{{ errors }}</span>
-<div class="field">
-    <div class="control">
-        <input class="input" #ticketLibelle (keydown)="errors = ''">
-    </div>
-</div>
-<button type="button" class="button is-primary" [class.is-loading]="isLoading" (click)="addTicket(ticketLibelle.value)">Add Ticket</button>
+<form class="text-center border border-light p-5" [formGroup]="contactForm" (ngSubmit)="onSubmit()" *ngIf="appsName">
+
+  <p class="h4 mb-4">Créer un nouveau ticket</p>
+
+  <input type="text" formControlName="contactFormLibelle" id="defaultContactFormLibelle" mdbInput
+    class="form-control mb-4" placeholder="Libelle">
+
+  <input type="email" formControlName="contactFormEmail" id="defaultContactFormEmail" mdbInput
+    class="form-control mb-4" placeholder="E-mail">
+
+  <label>Category</label>
+  <select formControlName="contactFormCategory" class="browser-default custom-select mb-4">
+    <option value="Application 1">Application 1</option>
+    <option value="Application 2">Application 2</option>
+    <option value="Application 3">Application 3</option>
+    <option value="Autre">Autre</option>
+  </select>
+
+  <label>Priority</label>
+  <select formControlName="contactFormPriority" class="browser-default custom-select mb-4">
+    <option value="" disabled>Choose option</option>
+    <option value="Basse" selected>Basse</option>
+    <option value="Moyenne">Moyenne</option>
+    <option value="Elevée">Elevée</option>
+    <option value="Urgente">Urgente</option>
+  </select>
+  
+  <div class="form-group">
+    <textarea formControlName="contactFormDescription" class="form-control rounded-0" mdbInput id="exampleFormControlTextarea2"
+      rows="3" placeholder="Description"></textarea>
+  </div>
+
+  <button mdbBtn color="info" outline="true" block="true" class="z-depth-0 my-4 waves-effect"
+    mdbWavesEffect type="submit" [disabled]="disabledSubmitButton" [class.is-loading]="isLoading">Send</button>
+
+</form>

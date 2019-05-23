@@ -1,3 +1,13 @@
-<p>
-  home works!
-</p>
+<div class="card card-image" style="background-image: url(https://mdbootstrap.com/img/Photos/Others/gradient1.jpg);">
+  <div class="text-white text-center py-5 px-4 my-5">
+    <div>
+      <h2 class="card-title h1-responsive pt-3 mb-5 font-bold"><strong>Welcome in the Ticket Management Application</strong></h2>
+      <p class="mx-5 mb-5">You can create a new ticket on this plateform.
+        If you are an admin, you can manage these ticket (edit, remove, add, etc)
+      </p>
+      <a mdbBtn color="white" outline="true" class="waves-light" [routerLink]="['/createTicket']" mdbWavesEffect>
+        <mdb-icon fas icon="clone" class="left"></mdb-icon>Create new ticket
+      </a>
+    </div>
+  </div>
+</div>

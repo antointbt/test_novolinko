@@ -14,6 +14,7 @@ import { TicketFormComponent } from './ticket-form/ticket-form.component';
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: 'tickets', component: TicketListComponent },
+  { path: 'createTicket', component: TicketFormComponent },
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 

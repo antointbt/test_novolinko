@@ -1,17 +1,34 @@
 <div>
   <span class="help is-info"  *ngIf="isLoading">Loading...</span>
-  <table class="table" *ngIf="!isLoading">
+  <table id="tableSortExample" mdbTable class="z-depth-1">
       <thead>
           <tr>
-              <th>ID</th>
-              <th>Libelle</th>
+            <th *ngFor="let head of headElements; let i = index" aria-controls="tableSortExample" scope="col" [mdbTableSort]="tickets" [sortBy]="headElements[i]">{{head | titlecase}}
+              <mdb-icon fas icon="sort"></mdb-icon>
+            </th>
           </tr>
       </thead>
       <tbody>
-          <tr *ngFor="let ticket of tickets">
-              <td>{{ ticket.id }}</td>
-              <td>{{ ticket.title }}</td>
+          <tr *ngFor="let ticket of tickets; let i = index">
+              <td scope="row">{{ ticket.id }}</td>
+              <td>{{ ticket.libelle }}</td>
+              <td>{{ ticket.description }}</td>
+              <td>{{ ticket.email }}</td>
+              <td>{{ ticket.category }}</td>
+              <td>{{ ticket.priority }}</td>
+              <td>{{ ticket.creationDate }}</td>
+              <td><mdb-badge pill="true" primary="true">{{ ticket.status }}</mdb-badge></td>
+              <td>
+                  <form>
+                      <button type="button" mdbBtn color="danger" size="sm" mdbWavesEffect (click)="removeTicket(ticket.id)">Remove ticket</button>
+                  </form>
+              </td>
           </tr>
       </tbody>
   </table>
 </div>
+
+
+<!-- <button type="button" mdbBtn color="info" mdbWavesEffect [routerLink]="['/createTicket']">Create new ticket</button> -->
+
+<!-- <app-ticket-form (ticketAdded)="appendTicket($event)"></app-ticket-form> -->

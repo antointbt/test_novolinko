@@ -51,4 +51,22 @@ class TicketController extends ApiController
 
         return $this->respondCreated($ticketRepository->transform($ticket));
     }
+
+    /**
+    * @Route("/removeTicket/{id}", methods="POST")
+    */
+    public function removeTicket($id, EntityManagerInterface $em, TicketRepository $ticketRepository)
+    {
+        $ticket = $ticketRepository->find($id);
+
+        if (! $ticket) {
+            return $this->respondNotFound();
+        }
+
+        $em->remove($ticket);
+        $em->flush();
+
+        $tickets = $ticketRepository->transformAll();
+        return $this->respond($tickets);
+    }
 }

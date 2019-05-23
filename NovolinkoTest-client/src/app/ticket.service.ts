@@ -32,4 +32,10 @@ export class TicketService {
           new RequestOptions({ headers: this.headers })
       ).map(res => res.json());
     }
+
+    removeTicket(id): Observable<Ticket> {
+      return this.http.post(API_URL + '/removeTicket/' + id, {},
+          new RequestOptions({ headers: this.headers })
+      ).map(res => res.json());
+    }
 }

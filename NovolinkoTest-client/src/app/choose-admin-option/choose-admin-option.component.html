@@ -1,3 +1,28 @@
-<p>
-  choose-admin-option works!
-</p>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-5 col-md-6">
+      <mdb-card cascade="true">
+          <div class="view view-cascade gradient-card-header blue-gradient">
+          <h2 class="card-header-title" style="padding: 50px;">View Tickets</h2>
+        </div>
+        <mdb-card-body cascade="true" class="text-center">
+          <mdb-card-text>
+              <button type="button" mdbBtn color="info" [routerLink]="['/tickets']" mdbWavesEffect>Select</button>
+          </mdb-card-text>
+        </mdb-card-body>
+      </mdb-card>
+  </div>
+  <div class="col-lg-5 col-md-6">
+      <mdb-card cascade="true">
+          <div class="view view-cascade gradient-card-header blue-gradient">
+          <h2 class="card-header-title" style="padding: 50px;">Edit List Application</h2>
+        </div>
+        <mdb-card-body cascade="true" class="text-center">
+          <mdb-card-text>
+              <button type="button" mdbBtn color="info" [routerLink]="['/editListApplication']" mdbWavesEffect>Select</button>
+          </mdb-card-text>
+        </mdb-card-body>
+      </mdb-card>
+  </div>
+</div>
+</div>

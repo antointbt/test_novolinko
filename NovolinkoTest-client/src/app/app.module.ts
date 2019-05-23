@@ -12,12 +12,15 @@ import { TicketListComponent } from './ticket-list/ticket-list.component';
 import { TicketFormComponent } from './ticket-form/ticket-form.component';
 import { AdminComponent } from './admin/admin.component';
 import { ChooseAdminOptionComponent } from './choose-admin-option/choose-admin-option.component';
+import { EditListApplicationComponent } from './edit-list-application/edit-list-application.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: 'admin', component: AdminComponent },
   { path: 'tickets', component: TicketListComponent },
   { path: 'createTicket', component: TicketFormComponent },
+  { path: 'chooseAdminOption', component: ChooseAdminOptionComponent },
+  { path: 'editListApplication', component: EditListApplicationComponent },
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 
@@ -30,6 +33,7 @@ const routes: Routes = [
     TicketFormComponent,
     AdminComponent,
     ChooseAdminOptionComponent,
+    EditListApplicationComponent,
   ],
   imports: [
     BrowserModule,

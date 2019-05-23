@@ -1,4 +1,5 @@
 import { Component, OnInit, EventEmitter, Output  } from '@angular/core';
+import { ApplicationNameService } from '../application-name.service';
 import { Ticket, TicketService } from '../ticket.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -13,6 +14,7 @@ import 'rxjs/Rx';
 })
 
 export class TicketFormComponent implements OnInit {
+
     errors: string = '';
     errorMessage: string;
     isLoading: boolean = false;
@@ -24,12 +26,13 @@ export class TicketFormComponent implements OnInit {
     public appsName: Array<any>;
 
     constructor(
-      private ticketService: TicketService,
-      private router: Router,
-      private fb: FormBuilder,
-      private datePipe: DatePipe,) {
-      
-        this.contactForm = fb.group({
+        private ticketService: TicketService,
+        private router: Router,
+        private fb: FormBuilder,
+        private datePipe: DatePipe,
+        private applicationNameService: ApplicationNameService) {
+
+      this.contactForm = fb.group({
         'contactFormLibelle': ['', Validators.required],
         'contactFormEmail': ['', Validators.compose([Validators.required, Validators.email])],
         'contactFormCategory': ['', Validators.required],
@@ -39,18 +42,31 @@ export class TicketFormComponent implements OnInit {
 
       this.date = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
     }
-
-    @Output()
-      ticketAdded: EventEmitter<Ticket> = new EventEmitter<Ticket>();
-
+      
     @HostListener('input') oninput() {
       if (this.contactForm.valid) {
         this.disabledSubmitButton = false;
         }
-      }
-  
-    ngOnInit() {
     }
+    
+    @Output()
+    ticketAdded: EventEmitter<Ticket> = new EventEmitter<Ticket>();
+
+    ngOnInit() {
+        this.getApplicationName();
+    }
+
+    getApplicationName() {
+        this.applicationNameService
+            .getApplicationName()
+            .subscribe(
+              appsName => {
+                this.appsName = appsName;
+                console.log("this.personList => ", this.appsName);
+              },
+                error => this.errorMessage = <any>error
+            );
+      }
 
     onSubmit() {
       this.isLoading = true;
@@ -68,6 +84,7 @@ export class TicketFormComponent implements OnInit {
           .subscribe(
               ticket => {
                   this.isLoading = false;
+                  ticket.isUpdating = false;
                   this.ticketAdded.emit(ticket);
                   this.router.navigate(['/home']);
               },

@@ -1,4 +1,4 @@
-<form class="text-center border border-light p-5" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+<form class="text-center border border-light p-5" [formGroup]="contactForm" (ngSubmit)="onSubmit()" *ngIf="appsName">
 
   <p class="h4 mb-4">Créer un nouveau ticket</p>
 
@@ -10,10 +10,7 @@
 
   <label>Category</label>
   <select formControlName="contactFormCategory" class="browser-default custom-select mb-4">
-    <option value="Application 1">Application 1</option>
-    <option value="Application 2">Application 2</option>
-    <option value="Application 3">Application 3</option>
-    <option value="Autre">Autre</option>
+    <option *ngFor="let appName of appsName;" [value]="appName.libelle">{{ appName.libelle }}</option>
   </select>
 
   <label>Priority</label>

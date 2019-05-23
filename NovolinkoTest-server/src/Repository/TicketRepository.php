@@ -48,7 +48,6 @@ class TicketRepository extends ServiceEntityRepository
     }
     */
 
-
     public function transform(Ticket $ticket)
     {
         return [
@@ -63,7 +62,6 @@ class TicketRepository extends ServiceEntityRepository
                 'status' => (string) $ticket->getStatus()
         ];
     }
-    
 
     public function transformAll()
     {
@@ -73,10 +71,8 @@ class TicketRepository extends ServiceEntityRepository
         foreach ($tickets as $ticket) {
             $ticketsArray[] = $this->transform($ticket);
         }
-
         return $ticketsArray;
     }
-
 
     /**
      * Returns a 422 Unprocessable Entity
@@ -133,5 +129,4 @@ class TicketRepository extends ServiceEntityRepository
 
         return $request;
     }
-
 }

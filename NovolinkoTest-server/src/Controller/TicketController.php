@@ -53,6 +53,46 @@ class TicketController extends ApiController
     }
 
     /**
+    * @Route("/processTicket/{id}/process", methods="POST")
+    */
+    public function processTicket($id, EntityManagerInterface $em, TicketRepository $ticketRepository)
+    {
+        $ticket = $ticketRepository->find($id);
+
+        if (! $ticket) {
+            return $this->respondNotFound();
+        }
+
+        $ticket->setStatus("processing");
+        $em->persist($ticket);
+        $em->flush();
+
+        return $this->respond([
+            'status' => $ticket->getStatus()
+        ]);
+    }
+
+    /**
+    * @Route("/closeTicket/{id}/close", methods="POST")
+    */
+    public function closeTicket($id, EntityManagerInterface $em, TicketRepository $ticketRepository)
+    {
+        $ticket = $ticketRepository->find($id);
+
+        if (! $ticket) {
+            return $this->respondNotFound();
+        }
+
+        $ticket->setStatus("close");
+        $em->persist($ticket);
+        $em->flush();
+
+        return $this->respond([
+            'status' => $ticket->getStatus()
+        ]);
+    }
+
+    /**
     * @Route("/removeTicket/{id}", methods="POST")
     */
     public function removeTicket($id, EntityManagerInterface $em, TicketRepository $ticketRepository)
@@ -69,4 +109,24 @@ class TicketController extends ApiController
         $tickets = $ticketRepository->transformAll();
         return $this->respond($tickets);
     }
+
+    // /**
+    // * @Route("/tickets/{id}/count", methods="POST")
+    // */
+    // public function increaseCount($id, EntityManagerInterface $em, TiketRepository $ticketRepository)
+    // {
+    //     $ticket = $ticketRepository->find($id);
+
+    //     if (! $ticket) {
+    //         return $this->respondNotFound();
+    //     }
+
+    //     $ticket->setCount($ticket->getCount() + 1);
+    //     $em->persist($ticket);
+    //     $em->flush();
+
+    //     return $this->respond([
+    //         'count' => $ticket->getCount()
+    //     ]);
+    // }
 }

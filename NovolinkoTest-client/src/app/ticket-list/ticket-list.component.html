@@ -1,5 +1,5 @@
 <div>
-  <span class="help is-info"  *ngIf="isLoading">Loading...</span>
+  <span class="help is-info" >Loading...</span>
   <table id="tableSortExample" mdbTable class="z-depth-1">
       <thead>
           <tr>
@@ -18,6 +18,12 @@
               <td>{{ ticket.priority }}</td>
               <td>{{ ticket.creationDate }}</td>
               <td><mdb-badge pill="true" primary="true">{{ ticket.status }}</mdb-badge></td>
+              <td>
+                  <form>
+                      <button type="button" mdbBtn color="info" block="true" size="sm" mdbWavesEffect [class.is-loading]="isUpdating(ticket.id)" (click)="processTicket(ticket.id)">Process the ticket</button>
+                      <button type="button" mdbBtn color="warning" block="true" size="sm" mdbWavesEffect style="margin-top: 10px;" [class.is-loading]="isUpdating(ticket.id)" (click)="closeTicket(ticket.id)">Close ticket</button>
+                  </form>
+              </td>
               <td>
                   <form>
                       <button type="button" mdbBtn color="danger" size="sm" mdbWavesEffect (click)="removeTicket(ticket.id)">Remove ticket</button>

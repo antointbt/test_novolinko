@@ -13,10 +13,18 @@ export class TicketListComponent implements OnInit {
     tickets: Ticket[];
     errorMessage: string;
     isLoading: boolean = true;
+    headElements = ['Id', 'Libelle', 'Description', 'email', 'category', 'priority', 'Creation Date', 'Status'];
+    public chart1Type:string = 'bar';
+    public chartType = 'line';
+    public chartDatasets: Array<any>;
+
+    public chartLabels: Array<any> = ['Open Ticket', 'Processing Ticket', 'Urgent Priority', 'Hight Priority'];
+  
     constructor(private ticketService: TicketService) {}
 
     ngOnInit() {
       this.getTickets();
+      this.getStatsTickets();
     }
 
     getTickets() {
@@ -31,6 +39,17 @@ export class TicketListComponent implements OnInit {
           );
     }
 
+    getStatsTickets() {
+      this.ticketService
+          .getStatsTickets()
+          .subscribe(
+              statstickets => {
+                this.chartDatasets = JSON.parse('[{ "data":'+ JSON.stringify(statstickets)+', "label": "#nb"}]');
+                this.isLoading = false;
+              },
+              error => this.errorMessage = <any>error
+          );
+    }
 
     findTicket(id): Ticket {
       return this.tickets.find(ticket => ticket.id === id);
@@ -53,6 +72,7 @@ export class TicketListComponent implements OnInit {
               response => {
                   ticket.status = response.status;
                   ticket.isUpdating = false;
+                  this.getStatsTickets();
               },
               error => {
                   this.errorMessage = <any>error;
@@ -70,6 +90,7 @@ export class TicketListComponent implements OnInit {
               response => {
                 ticket.status = response.status;
                 ticket.isUpdating = false;
+                this.getStatsTickets();
               },
               error => {
                   this.errorMessage = <any>error;

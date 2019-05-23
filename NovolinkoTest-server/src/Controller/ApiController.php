@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 class ApiController
 {
@@ -76,7 +77,7 @@ class ApiController
         return $this->setStatusCode(401)->respondWithErrors($message);
     }
 
-    /**
+/**
  * Returns a 422 Unprocessable Entity
  *
  * @param string $message
@@ -131,4 +132,5 @@ protected function transformJsonBody(\Symfony\Component\HttpFoundation\Request $
 
     return $request;
 }
+
 }

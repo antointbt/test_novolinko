@@ -48,6 +48,42 @@ class TicketRepository extends ServiceEntityRepository
     }
     */
 
+    public function findNbOpenTicket()
+    {
+        return $this->createQueryBuilder('u')
+        ->select('count(u.id)')
+        ->andWhere("u.status = 'open'")
+        ->getQuery()
+        ->getSingleScalarResult();
+    }
+
+    public function findNbProcessingTicket()
+    {
+        return $this->createQueryBuilder('u')
+        ->select('count(u.id)')
+        ->andWhere("u.status = 'processing'")
+        ->getQuery()
+        ->getSingleScalarResult();
+    }
+
+    public function findNbUrgentPriority()
+    {
+        return $this->createQueryBuilder('u')
+        ->select('count(u.id)')
+        ->andWhere("u.priority = 'Urgente'")
+        ->getQuery()
+        ->getSingleScalarResult();
+    }
+
+    public function findNbHightPriority()
+    {
+        return $this->createQueryBuilder('u')
+        ->select('count(u.id)')
+        ->andWhere("u.priority = 'Elevée'")
+        ->getQuery()
+        ->getSingleScalarResult();
+    }
+
     public function transform(Ticket $ticket)
     {
         return [

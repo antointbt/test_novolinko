@@ -1,40 +1,52 @@
 <div>
-  <span class="help is-info"  *ngIf="isLoading">Loading...</span>
-  <table id="tableSortExample" mdbTable class="z-depth-1">
-      <thead>
-          <tr>
-            <th *ngFor="let head of headElements; let i = index" aria-controls="tableSortExample" scope="col" [mdbTableSort]="tickets" [sortBy]="headElements[i]">{{head | titlecase}}
-              <mdb-icon fas icon="sort"></mdb-icon>
-            </th>
-          </tr>
-      </thead>
-      <tbody>
-          <tr *ngFor="let ticket of tickets; let i = index">
-              <td scope="row">{{ ticket.id }}</td>
-              <td>{{ ticket.libelle }}</td>
-              <td>{{ ticket.description }}</td>
-              <td>{{ ticket.email }}</td>
-              <td>{{ ticket.category }}</td>
-              <td>{{ ticket.priority }}</td>
-              <td>{{ ticket.creationDate }}</td>
-              <td><mdb-badge pill="true" primary="true">{{ ticket.status }}</mdb-badge></td>
-              <td>
-                  <form>
-                      <button type="button" mdbBtn color="info" block="true" size="sm" mdbWavesEffect [class.is-loading]="isUpdating(ticket.id)" (click)="processTicket(ticket.id)">Process the ticket</button>
-                      <button type="button" mdbBtn color="warning" block="true" size="sm" mdbWavesEffect style="margin-top: 10px;" [class.is-loading]="isUpdating(ticket.id)" (click)="closeTicket(ticket.id)">Close ticket</button>
-                  </form>
-              </td>
-              <td>
-                  <form>
-                      <button type="button" mdbBtn color="danger" size="sm" mdbWavesEffect (click)="removeTicket(ticket.id)">Remove ticket</button>
-                  </form>
-              </td>
-          </tr>
-      </tbody>
-  </table>
-</div>
-
-
-<!-- <button type="button" mdbBtn color="info" mdbWavesEffect [routerLink]="['/createTicket']">Create new ticket</button> -->
-
-<!-- <app-ticket-form (ticketAdded)="appendTicket($event)"></app-ticket-form> -->
+    <span class="help is-info"  *ngIf="isLoading">Loading...</span>
+    <table id="tableSortExample" mdbTable class="z-depth-1">
+        <thead>
+            <tr>
+              <th *ngFor="let head of headElements; let i = index" aria-controls="tableSortExample" scope="col" [mdbTableSort]="tickets" [sortBy]="headElements[i]">{{head | titlecase}}
+                <mdb-icon fas icon="sort"></mdb-icon>
+              </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let ticket of tickets; let i = index">
+                <td scope="row">{{ ticket.id }}</td>
+                <td>{{ ticket.libelle }}</td>
+                <td>{{ ticket.description }}</td>
+                <td>{{ ticket.email }}</td>
+                <td>{{ ticket.category }}</td>
+                <td>{{ ticket.priority }}</td>
+                <td>{{ ticket.creationDate }}</td>
+                <td><mdb-badge pill="true" primary="true">{{ ticket.status }}</mdb-badge></td>
+                <td>
+                    <form>
+                        <button type="button" mdbBtn color="info" block="true" size="sm" mdbWavesEffect [class.is-loading]="isUpdating(ticket.id)" (click)="processTicket(ticket.id)">Process the ticket</button>
+                        <button type="button" mdbBtn color="warning" block="true" size="sm" mdbWavesEffect style="margin-top: 10px;" [class.is-loading]="isUpdating(ticket.id)" (click)="closeTicket(ticket.id)">Close ticket</button>
+                    </form>
+                </td>
+                <td>
+                    <form>
+                        <button type="button" mdbBtn color="danger" size="sm" mdbWavesEffect (click)="removeTicket(ticket.id)">Remove ticket</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+  </div>
+  
+  <!--Card-->
+  <div class="card" *ngIf="chartDatasets">
+  
+      <!--Card content-->
+      <div class="card-body">
+  
+        <div style="display: block">
+          <canvas mdbChart [chartType]="chart1Type" [datasets]="chartDatasets" [labels]="chartLabels" [colors]="chartColors" [options]="chartOptions"
+            [legend]="true">
+          </canvas>
+        </div>
+      </div>
+  
+    </div>
+    <!--/.Card-->
+  

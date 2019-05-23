@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter, Output  } from '@angular/core';
-import { ApplicationNameService } from '../application-name.service';
+import { ApplicationName, ApplicationNameService } from '../application-name.service';
 import { Ticket, TicketService } from '../ticket.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';

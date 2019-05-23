@@ -21,6 +21,18 @@ class TicketController extends ApiController
     }
 
     /**
+    * @Route("/getStatsTickets", methods="GET")
+    */
+    public function getStatsTickets(TicketRepository $ticketRepository, EntityManagerInterface $em)
+    {
+        $nbOpenTicket = $ticketRepository->findNbOpenTicket();
+        $nbProcessingTicket = $ticketRepository->findNbProcessingTicket();
+        $nbUrgentPriority = $ticketRepository->findNbUrgentPriority();
+        $nbHightPriority = $ticketRepository->findNbHightPriority();
+        return $this->respond([$nbOpenTicket, $nbProcessingTicket, $nbUrgentPriority, $nbHightPriority, 0]);
+    }
+
+    /**
     * @Route("/tickets", methods="POST")
     */
     public function create(Request $request, TicketRepository $ticketRepository, EntityManagerInterface $em)

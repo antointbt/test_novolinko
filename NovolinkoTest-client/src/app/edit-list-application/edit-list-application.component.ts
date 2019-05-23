@@ -12,7 +12,6 @@ export class EditListApplicationComponent implements OnInit {
     errorMessage: string;
     editField: string;
     personList: Array<any>;
-    personList2: Array<any>;
 
     constructor(private applicationNameService: ApplicationNameService) {}
 

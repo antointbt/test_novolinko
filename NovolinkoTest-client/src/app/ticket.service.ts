@@ -42,6 +42,16 @@ export class TicketService {
       });
     }
 
+    getStatsTickets(): Observable<Ticket[]> {
+      return this.http.get(API_URL + '/getStatsTickets',
+        new RequestOptions({ headers: this.headers })
+      )
+      .map(res => {
+          let modifiedResult = res.json();
+          return modifiedResult;
+      });
+    }
+
     addTicket(ticket): Observable<Ticket> {
       return this.http.post(API_URL + '/tickets', ticket, 
           new RequestOptions({ headers: this.headers })

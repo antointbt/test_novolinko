@@ -11,6 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { TicketListComponent } from './ticket-list/ticket-list.component';
 import { TicketFormComponent } from './ticket-form/ticket-form.component';
 import { AdminComponent } from './admin/admin.component';
+import { ChooseAdminOptionComponent } from './choose-admin-option/choose-admin-option.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -28,6 +29,7 @@ const routes: Routes = [
     TicketListComponent,
     TicketFormComponent,
     AdminComponent,
+    ChooseAdminOptionComponent,
   ],
   imports: [
     BrowserModule,

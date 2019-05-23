@@ -5,7 +5,7 @@ import 'rxjs/Rx';
 @Component({
     selector: 'app-ticket-form',
     templateUrl: './ticket-form.component.html',
-    styleUrls: ['./ticket-form.component.css']
+    styleUrls: ['./ticket-form.component.scss']
 })
 
 export class TicketFormComponent implements OnInit {

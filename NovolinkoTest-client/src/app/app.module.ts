@@ -14,6 +14,7 @@ import { AdminComponent } from './admin/admin.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
+  { path: 'admin', component: AdminComponent },
   { path: 'tickets', component: TicketListComponent },
   { path: 'createTicket', component: TicketFormComponent },
   { path: '**', redirectTo: '', pathMatch: 'full' }

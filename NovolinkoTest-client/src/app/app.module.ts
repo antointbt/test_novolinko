@@ -10,6 +10,7 @@ import { DatePipe } from '@angular/common';
 import { HomeComponent } from './home/home.component';
 import { TicketListComponent } from './ticket-list/ticket-list.component';
 import { TicketFormComponent } from './ticket-form/ticket-form.component';
+import { AdminComponent } from './admin/admin.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -25,6 +26,7 @@ const routes: Routes = [
     HomeComponent,
     TicketListComponent,
     TicketFormComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,3 +1,17 @@
-<p>
-  ticket-list works!
-</p>
+<div>
+  <span class="help is-info"  *ngIf="isLoading">Loading...</span>
+  <table class="table" *ngIf="!isLoading">
+      <thead>
+          <tr>
+              <th>ID</th>
+              <th>Libelle</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let ticket of tickets">
+              <td>{{ ticket.id }}</td>
+              <td>{{ ticket.title }}</td>
+          </tr>
+      </tbody>
+  </table>
+</div>

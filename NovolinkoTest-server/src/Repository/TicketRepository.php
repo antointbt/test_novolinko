@@ -47,4 +47,25 @@ class TicketRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function transform(Ticket $ticket)
+{
+    return [
+            'id'    => (int) $ticket->getId(),
+            'title' => (string) $ticket->getTitle(),
+            'count' => (int) $ticket->getCount()
+    ];
+}
+
+public function transformAll()
+{
+    $tickets = $this->findAll();
+    $ticketsArray = [];
+
+    foreach ($tickets as $ticket) {
+        $ticketsArray[] = $this->transform($ticket);
+    }
+
+    return $ticketsArray;
+}
 }

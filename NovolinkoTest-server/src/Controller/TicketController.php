@@ -1,21 +1,47 @@
 <?php
 namespace App\Controller;
 
-use Symfony\Component\HttpFoundation\JsonResponse;
+use App\Entity\Ticket;
+use App\Repository\TicketRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
-class TicketController
+class TicketController extends ApiController
 {
     /**
-    * @Route("/tickets")
+    * @Route("/tickets", methods="GET")
     */
-    public function ticketAction()
+    public function index(TicketRepository $ticketRepository)
     {
-        return new JsonResponse([
-            [
-                'libelle' => 'libelle',
-                'id' => 0
-            ]
-        ]);
+        $tickets = $ticketRepository->transformAll();
+
+        return $this->respond($tickets);
+    }
+
+    /**
+    * @Route("/tickets", methods="POST")
+    */
+    public function create(Request $request, TicketRepository $ticketRepository, EntityManagerInterface $em)
+    {
+        $request = $this->transformJsonBody($request);
+
+        if (! $request) {
+            return $this->respondValidationError('Please provide a valid request!');
+        }
+
+        // validate the title
+        if (! $request->get('title')) {
+            return $this->respondValidationError('Please provide a title!');
+        }
+
+        // persist the new ticket
+        $ticket = new Ticket;
+        $ticket->setTitle($request->get('title'));
+        $em->persist($ticket);
+        $em->flush();
+
+        return $this->respondCreated($ticketRepository->transform($ticket));
     }
 }

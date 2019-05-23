@@ -129,4 +129,10 @@ class TicketRepository extends ServiceEntityRepository
 
         return $request;
     }
+
+    public function transformAll2()
+    {
+        $AppsName = $this->findAll();
+        return $AppsName;
+    }
 }
